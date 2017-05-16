@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>极简的MVP设计模式配合UI框架 | 洋葱的分享博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="极简的MVP设计模式配合UI框架MVP可以实现视图和数据的解耦 ###如图所示 MVP使M与V分离 实现了解耦">
+  <meta name="description" content="MVP可以实现视图和数据的解耦 ###如图所示 MVP使M与V分离 实现了解耦">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极简的MVP设计模式配合UI框架">
 <meta property="og:url" content="http://yoursite.com/2017/05/16/极简MVP设计模式 搭配UI框架实现数据显示/index.html">
 <meta property="og:site_name" content="洋葱的分享博客">
-<meta property="og:description" content="极简的MVP设计模式配合UI框架MVP可以实现视图和数据的解耦 ###如图所示 MVP使M与V分离 实现了解耦">
+<meta property="og:description" content="MVP可以实现视图和数据的解耦 ###如图所示 MVP使M与V分离 实现了解耦">
 <meta property="og:image" content="http://img.blog.csdn.net/20151024120647835?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:updated_time" content="2017-05-16T03:51:57.020Z">
+<meta property="og:updated_time" content="2017-05-16T03:53:20.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="极简的MVP设计模式配合UI框架">
-<meta name="twitter:description" content="极简的MVP设计模式配合UI框架MVP可以实现视图和数据的解耦 ###如图所示 MVP使M与V分离 实现了解耦">
+<meta name="twitter:description" content="MVP可以实现视图和数据的解耦 ###如图所示 MVP使M与V分离 实现了解耦">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20151024120647835?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
   
     <link rel="alternative" href="/atom.xml" title="洋葱的分享博客" type="application/atom+xml">
@@ -176,7 +176,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="极简的MVP设计模式配合UI框架"><a href="#极简的MVP设计模式配合UI框架" class="headerlink" title="极简的MVP设计模式配合UI框架"></a>极简的MVP设计模式配合UI框架</h1><h2 id="MVP可以实现视图和数据的解耦"><a href="#MVP可以实现视图和数据的解耦" class="headerlink" title="MVP可以实现视图和数据的解耦"></a>MVP可以实现视图和数据的解耦</h2><p><img src="http://img.blog.csdn.net/20151024120647835?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+        <h2 id="MVP可以实现视图和数据的解耦"><a href="#MVP可以实现视图和数据的解耦" class="headerlink" title="MVP可以实现视图和数据的解耦"></a>MVP可以实现视图和数据的解耦</h2><p><img src="http://img.blog.csdn.net/20151024120647835?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
 <p>###如图所示 MVP使M与V分离 实现了解耦<br><a id="more"></a></p>
 <h3 id="定义BaseView-所有视图的通用接口-activity-fragment"><a href="#定义BaseView-所有视图的通用接口-activity-fragment" class="headerlink" title="定义BaseView 所有视图的通用接口(activity fragment)"></a>定义BaseView 所有视图的通用接口(activity fragment)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public interface BaseView &#123;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 初始化数据</div><div class="line">     */</div><div class="line">    void loadData();</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 更新View的状态</div><div class="line">     * @param state</div><div class="line">     */</div><div class="line">    void updateState(int state);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h5 id="updateState整个方法是由我们来根据网络返回的数据或者来判断整个View的状态-定义了三个状态值-由此来展示loading页面-或者-error的页面"><a href="#updateState整个方法是由我们来根据网络返回的数据或者来判断整个View的状态-定义了三个状态值-由此来展示loading页面-或者-error的页面" class="headerlink" title="updateState整个方法是由我们来根据网络返回的数据或者来判断整个View的状态,定义了三个状态值,由此来展示loading页面 或者 error的页面"></a>updateState整个方法是由我们来根据网络返回的数据或者来判断整个View的状态,定义了三个状态值,由此来展示loading页面 或者 error的页面</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//加载状态</div><div class="line">public static final int STATUS_LOADING = 100;</div><div class="line">//成功状态</div><div class="line">public static final int STATUS_SUCCESS = 101;</div><div class="line">//失败状态</div><div class="line">public static final int STATUS_ERROR = 102;</div></pre></td></tr></table></figure>
@@ -290,15 +290,6 @@
 
   
 <nav id="article-nav">
-  
-    <a href="/2017/05/16/小文章/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          小文章
-        
-      </div>
-    </a>
   
   
     <a href="/2017/05/16/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
